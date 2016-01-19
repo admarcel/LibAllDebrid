@@ -26,7 +26,7 @@ namespace LibAllDebrid
         }
 
         [TestMethod()]
-        [ExpectedException(typeof(InvalidCredentials),"A userId of null was inappropriately allowed.")]
+        [ExpectedException(typeof(InvalidCredentials))]
         public void TestLoginFail()
         {
             AllDebrid all = new AllDebrid(username: this.username, password: "false");
