@@ -1,4 +1,4 @@
 ﻿language: csharp
 solution: LibAllDebrid.sln
 install:    # the following commands are just examples, use whatever your build process requires
-  nuget restore solution-name.sln
+   - nuget restore solution-name.sln
