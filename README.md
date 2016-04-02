@@ -23,7 +23,7 @@ Link link = debridr.getUrlDebride(link);
 Console.WriteLine(link.link)
 ```
 
-#### Get left days before subcription expiration
+#### Get days remaining before subcription expiration
 ```c#
 string days = debridr.daysLeft;
 ```
