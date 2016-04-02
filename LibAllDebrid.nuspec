@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>LibAllDebrid</title>
+    <authors>Adrien MARCEL$</authors>
+    <owners>$author$</owners>
+    <projectUrl>https://github.com/admarcel/LibAllDebrid</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>C# api wrapper to alldebrid.com</description>
+    <copyright>Copyright 2016</copyright>
+  </metadata>
+</package>
