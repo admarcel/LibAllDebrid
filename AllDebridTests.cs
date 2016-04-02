@@ -21,8 +21,11 @@ namespace LibAllDebrid
             PrivateObject obj = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(all);
             var result = obj.Invoke("Login", this.username, this.password);
             var attrCookie = obj.GetFieldOrProperty("_cookie");
+            var attrDaysLeft = obj.GetFieldOrProperty("daysLeft");
             Assert.IsNotNull(attrCookie);
             Assert.IsTrue((bool)result);
+            Assert.IsNotNull(attrDaysLeft);
+            
         }
 
         [TestMethod()]

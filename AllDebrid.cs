@@ -6,15 +6,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace LibAllDebrid
 {
    public class AllDebrid
     {
+
+        #region Properties
         private string _login_url = "http://alldebrid.com/api.php";
         private string _get_link_url = "http://www.alldebrid.com/service.php?json=true&link=";
         private string _url_hosters = "https://www.alldebrid.com/api.php?action=get_host";
-       public string cookie { get; set; }
+
+        public string daysLeft { get; set; }
+
+        public string _cookie { get; set; }
+        #endregion
 
         public AllDebrid(string username, string password)
         {
@@ -32,7 +39,7 @@ namespace LibAllDebrid
        }
 
         /// <summary>
-        /// Authentifier l'utilisateur.
+        /// Authenticate to alldebrid server.
         /// Si username et password sont corrects, l'attribut privé _cookie est rempli.
         /// </summary>
         /// <param name="username"></param>
@@ -51,18 +58,26 @@ namespace LibAllDebrid
                     throw new InvalidCredentials();
                 };
                 XDocument xml = XDocument.Parse(response.ToString());
-                var query = xml.Descendants().SingleOrDefault(e => e.Name == "cookie");
+                var cookieQuery = xml.Descendants().SingleOrDefault(e => e.Name == "cookie");
+
+                var dateQuery = xml.Descendants().SingleOrDefault(e => e.Name == "date");
+
+                if(dateQuery != null && dateQuery.Value != null){
+                    daysLeft = dateQuery.Value;
+                    Debug.Write(daysLeft);
+                }
+
                 // Le cookie a été trouvé
-                if (query != null && query.Value != null)
+                if (cookieQuery != null && cookieQuery.Value != null)
                 {
-                    _cookie = query.Value;
+                    _cookie = cookieQuery.Value;
                     return true;
                 }
                 throw new InvalidCredentials();
             }
         }
 
-       public string _cookie { get; set; }
+   
 
        /// <summary>
         /// Retourne une objet Link si le lien à correctement été débridé.
